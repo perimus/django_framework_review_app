@@ -12,6 +12,7 @@ flake8 = "*"
 black = "==21.5b1"
 mypy = "*"
 isort = "*"
+vulture = "*"
 
 [requires]
 python_version = "3.8"
