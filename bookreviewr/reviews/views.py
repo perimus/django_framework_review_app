@@ -1,4 +1,5 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpRequest
 
-def index(request):
-    return HttpResponse("Hello, world!")
+def index(request: HttpRequest) -> HttpResponse:
+    name: str = request.GET.get("name") or "world"
+    return HttpResponse(f"Hello, {name}!")
