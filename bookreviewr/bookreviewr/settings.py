@@ -77,9 +77,7 @@ WSGI_APPLICATION = "bookreviewr.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        'OPTIONS' : {
-            'options': '-c search_path=bookreviewr,public'
-        },
+        "OPTIONS": {"options": "-c search_path=bookreviewr,public"},
         "NAME": "postgres",
         "USER": "postgres",
         "PASSWORD": "docker",
