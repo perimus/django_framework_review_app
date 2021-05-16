@@ -101,11 +101,12 @@ class DBBookContributor(Model):
         AUTHOR = "AUTHOR", "Author"
         CO_AUTHOR = "CO_AUTHOR", "Co-author"
         EDITOR = "EDITOR", "Editor"
+        COMMENTATOR = "COMMENTATOR", "Commentator"
 
     book = ForeignKey("DBBook", on_delete=CASCADE)
     contributor = ForeignKey("DBContributor", on_delete=CASCADE)
     role = CharField(
-        verbose_name="The role this contributor had in the book", choices=ContributionRoles.choices, max_length=10
+        verbose_name="The role this contributor had in the book", choices=ContributionRoles.choices, max_length=20
     )
 
     class Meta:
