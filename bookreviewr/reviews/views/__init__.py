@@ -1,9 +1,5 @@
-from .index import index
-from .search import search
-from .welcome import welcome
+from .book import book_list
 
 __all__ = [
-    "index",
-    "search",
-    "welcome",
+    "book_list",
 ]
