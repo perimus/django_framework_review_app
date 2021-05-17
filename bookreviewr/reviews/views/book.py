@@ -3,7 +3,7 @@ from django.shortcuts import render
 from reviews.models import DBBook, DBReview
 from reviews.utils import calc_average_rating
 
-def book_list(request: HttpRequest) -> render:
+def books_list(request: HttpRequest) -> render:
     """
     """
 
@@ -25,3 +25,14 @@ def book_list(request: HttpRequest) -> render:
     context = { "book_list": book_list }
     
     return render(request, "reviews/books_list.html", context)
+
+def book_detail(request: HttpRequest, book_id: int) -> render:
+    """
+    """
+    
+    book = DBBook.objects.get(pk=book_id)
+    reviews = book.dbreview_set.all()
+
+    context = { "book":book, "reviews":reviews }
+
+    return render(request, "reviews/book.html", context)

@@ -1,5 +1,6 @@
-from .book import book_list
+from .book import books_list, book_detail
 
 __all__ = [
-    "book_list",
+    "books_list",
+    "book_detail",
 ]
