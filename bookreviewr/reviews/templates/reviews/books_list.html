@@ -1,26 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Bookreviewr</title>
-    </head>
-    <body>
-        <h1>Book Review application</h1>
-        <hr>
-        <ul>
-            {% for book in book_list %}
-            <li>
-                <span>Title: {{ book.book_info.title }}</span><br>
-                <span>Publisher: {{ book.book_info.publisher }}</span><br>
-                <span>Publication Date: {{ book.book_info.publication_date }}</span><br>
-                <span>Rating: {{ book.book_rating }}</span><br>
-                <span>Number of reviews: {{ book.amount_reviews }}</span><br>
-                {% if book.book_rating is null %}
-                <span>Provide a rating and write the first review for this book.</span><br>
-                {% endif %}
-            </li>
-            <br>
-            {% endfor %}
-        </ul>
-    </body>
- </html>
+{% extends 'base.html' %}
+
+{% block content %}
+    <ul class="list-group">
+        {% for book in book_list %}
+        <li class="list-group-item">
+            <span class="text-info">Title: </span><span> {{ book.book_info.title }}</span><br>
+            <span class="text-info">Publisher: </span><span> {{ book.book_info.publisher }}</span><br>
+            <span class="text-info">Publication Date: </span><span> {{ book.book_info.publication_date }}</span><br>
+            <span class="text-info">Rating: </span><span class="badge bg-primary rounded-pill">{{ book.book_rating }}</span><br>
+            <span class="text-info">Number of reviews: </span><span> {{ book.amount_reviews }}</span><br>
+            {% if book.book_rating is null %}
+            <span class="text-secondary">Provide a rating and write the first review for this book.</span><br>
+            {% endif %}
+            <a class="btn btn-primary btn-sm active" role="button" aria-pressed="true" href="/book/{{ book.book_info.id}}/">Reviews</a>
+        </li>
+        <br>
+        {% endfor %}
+    </ul>
+{% endblock content %}
