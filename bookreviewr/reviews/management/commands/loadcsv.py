@@ -19,6 +19,7 @@ class Command(BaseCommand):
         return dict([(header[i], row[i]) for i, head in enumerate(header) if head])
 
     def handle(self, *args, **options):
+        args = args
         m = re.compile(r"content:(\w+)")
         header = None
         models = dict()
