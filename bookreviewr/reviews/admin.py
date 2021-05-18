@@ -3,7 +3,8 @@ from reviews.models import DBBook, DBBookContributor, DBContributor, DBPublisher
 
 class BookreviewrAdminSite(AdminSite):
     title_header: str = "Bookreviewr Admin"
-    side_header: str = "Bookreviewr site Admin"
+    site_header: str = "Bookreviewr administration"
+    index_title: str = "Bookreviewr site admin"
 
 admin_site: BookreviewrAdminSite = BookreviewrAdminSite(name="bookreviewr")
 
