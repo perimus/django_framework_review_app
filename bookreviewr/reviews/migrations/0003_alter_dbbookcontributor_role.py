@@ -6,13 +6,22 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('reviews', '0002_dbcontributor_email'),
+        ("reviews", "0002_dbcontributor_email"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='dbbookcontributor',
-            name='role',
-            field=models.CharField(choices=[('AUTHOR', 'Author'), ('CO_AUTHOR', 'Co-author'), ('EDITOR', 'Editor'), ('COMMENTATOR', 'Commentator')], max_length=20, verbose_name='The role this contributor had in the book'),
+            model_name="dbbookcontributor",
+            name="role",
+            field=models.CharField(
+                choices=[
+                    ("AUTHOR", "Author"),
+                    ("CO_AUTHOR", "Co-author"),
+                    ("EDITOR", "Editor"),
+                    ("COMMENTATOR", "Commentator"),
+                ],
+                max_length=20,
+                verbose_name="The role this contributor had in the book",
+            ),
         ),
     ]
