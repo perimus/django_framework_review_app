@@ -23,29 +23,21 @@ class DBContributor(Model):
     first_name = CharField(max_length=32, help_text="The contributor's first name.")
     middle_names = CharField(null=True, max_length=64, help_text="The contributor's middle name or names.")
     last_name = CharField(max_length=32, help_text="The contributor's last name.")
-
-    def __str__(self) -> str:
-        return self.first_name
-
-    class Meta:
-        db_table = "contributors"
-
-
-class DBContributor(Model):
-    """
-    A contributor to a book, e.g. author, editor, co-author.
-    """
-
-    first_name = CharField(max_length=32, help_text="The contributor's first name.")
-    middle_names = CharField(null=True, max_length=64, help_text="The contributor's middle name or names.")
-    last_name = CharField(max_length=32, help_text="The contributor's last name.")
     email = CharField(null=True, max_length=320, help_text="The contributor's email address.")
 
-    def __str__(self) -> str:
-        return self.first_name
+    def __str__(self):
+        return self.initialled_name()
 
     class Meta:
         db_table = "contributors"
+
+    def initialled_name(self) -> str:
+        contributor_init: str = "".join([name[0].upper() for name in self.first_name.split(" ")])
+        middle_name_init: str = None
+        if self.middle_names:
+            middle_name_init = "".join([name[0].upper() for name in self.middle_names.split(" ")])
+            contributor_init = "".join([contributor_init, middle_name_init])
+        return f"{self.last_name}, {contributor_init}"
 
 
 class DBPublisher(Model):
@@ -89,7 +81,7 @@ class DBBook(Model):
     publisher = ForeignKey("DBPublisher", on_delete=CASCADE)
     contributors = ManyToManyField("DBContributor", through="DBBookContributor")
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.title
 
     class Meta:
