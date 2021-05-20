@@ -1,23 +1,21 @@
+from typing import Dict, List, Tuple
+
 from django.contrib import admin
 from reviews.models import DBBook, DBBookContributor, DBContributor, DBPublisher, DBReview
-from typing import List, Tuple, Dict
+
 
 class BookAdmin(admin.ModelAdmin):
     date_hierarchy: str = "publication_date"
-    search_fields: List[str] = ("title", "isbn__exact", "publisher__name__startswith") 
+    search_fields: List[str] = ("title", "isbn__exact", "publisher__name__startswith")
     list_display: List[str] = ("title", "isbn")
-    list_filter: List[str] = ("publisher","publication_date")
+    list_filter: List[str] = ("publisher", "publication_date")
 
 
 class ReviewAdmin(admin.ModelAdmin):
     fieldsets: List[Tuple[str, Dict[str, str]]] = (
-            (
-                None, {'fields': ('creator', 'book')}
-            ), 
-            (
-                'Review content', {'fields': ('content', 'rating')}
-            )
-        )
+        (None, {"fields": ("creator", "book")}),
+        ("Review content", {"fields": ("content", "rating")}),
+    )
 
 
 class ContributorAdmin(admin.ModelAdmin):

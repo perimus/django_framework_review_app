@@ -14,6 +14,7 @@ from django.db.models import (
     URLField,
 )
 
+
 class DBContributor(Model):
     """
     A contributor to a book, e.g. author, editor, co-author.
@@ -29,12 +30,12 @@ class DBContributor(Model):
 
     class Meta:
         db_table = "contributors"
-    
+
     def initialled_name(self) -> str:
-        contributor_init: str = "".join([name[0].upper() for name in self.first_name.split(' ')])
+        contributor_init: str = "".join([name[0].upper() for name in self.first_name.split(" ")])
         middle_name_init: str = None
         if self.middle_names:
-            middle_name_init = "".join([name[0].upper() for name in self.middle_names.split(' ')])
+            middle_name_init = "".join([name[0].upper() for name in self.middle_names.split(" ")])
             contributor_init = "".join([contributor_init, middle_name_init])
         return f"{self.last_name}, {contributor_init}"
 
@@ -53,7 +54,6 @@ class DBPublisher(Model):
 
     class Meta:
         db_table = "publishers"
-
 
 
 class DBReview(Model):
