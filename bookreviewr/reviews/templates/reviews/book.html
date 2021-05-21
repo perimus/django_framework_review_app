@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'reviews/base.html' %}
 
 {% block content %}
     <br>
@@ -25,5 +25,5 @@
                     <span class="text-info">Creater: </span><span> {{ review.creator }}</span><br>
                 </li>
             {% endfor %}
-
+    {% endif %}
 {% endblock content %}
