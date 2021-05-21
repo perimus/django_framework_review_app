@@ -122,9 +122,9 @@ STATIC_URL = "/static/"
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_production_test')
+STATIC_ROOT = os.path.join(BASE_DIR, "static_production_test")
 
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
