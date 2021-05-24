@@ -6,16 +6,11 @@ RADIO_CHOICES = (
     ("Value Three", "Value Three's Display Text"),
 )
 
-BOOK_CHOICES= (
-    ("Non-Fiction",
-        (("1", "Deep Learnig With Keras"),
-        ("2", "Web Development with Django"))
-    ),
-    ("Fiction",
-        (("3", "Brave New world"),
-        ("4", "The Great Gatsby"))
-    ),
+BOOK_CHOICES = (
+    ("Non-Fiction", (("1", "Deep Learnig With Keras"), ("2", "Web Development with Django"))),
+    ("Fiction", (("3", "Brave New world"), ("4", "The Great Gatsby"))),
 )
+
 
 class ExampleForm(forms.Form):
     text_input = forms.CharField()
