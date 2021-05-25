@@ -100,7 +100,7 @@ class DBBookContributor(Model):
     role = CharField(
         verbose_name="The role this contributor had in the book", choices=ContributionRoles.choices, max_length=20
     )
-    
+
     def __str__(self):
         return "{} {} {}".format(self.contributor.initialled_name(), self.role, self.book.isbn)
 

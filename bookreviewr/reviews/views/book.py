@@ -1,10 +1,11 @@
+from typing import Set
+
+from django.db.models import Q
 from django.http import HttpRequest
 from django.shortcuts import get_object_or_404, render
+from reviews.forms import SearchForm
 from reviews.models import DBBook
 from reviews.utils import calc_average_rating
-from reviews.forms import SearchForm
-from typing import Set
-from django.db.models import Q
 
 
 def books_list(request: HttpRequest) -> render:
@@ -53,17 +54,14 @@ def book_search(request: HttpRequest) -> render:
         search_in: str = form.cleaned_data.get("search_in") or "title"
 
         query: Q = Q()
-    
+
         if search_in == "title":
             query &= Q(title__icontains=search)
         else:
             query &= Q(contributors__first_name__icontains=search) | Q(contributors__last_name__icontains=search)
-        
+
         books = list(DBBook.objects.filter(query).all())
 
     context = {"book_list": books, "form": form, "search_text": search_text}
 
     return render(request, "reviews/search-results.html", context)
-
-
-

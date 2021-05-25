@@ -36,7 +36,7 @@
                         {% for contributor in book.contributors.all %}
                         {{contributor.first_name}} {{contributor.middle_names}} {{contributor.last_name}}
                         {% if not forloop.last %}, {% endif %}
-                        {% endfor %} 
+                        {% endfor %}
                     </span><br>
                 </li>
                 {% endfor %}
