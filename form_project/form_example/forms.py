@@ -1,9 +1,10 @@
 from django import forms
 from django.core.exceptions import ValidationError
 
+
 def validate_email_domain(value: str) -> None:
-        if value.split("@")[-1].lower()!= "example.com":\
-            raise ValidationError("The email address must be on the domain example.com.")
+    if value.split("@")[-1].lower() != "example.com":
+        raise ValidationError("The email address must be on the domain example.com.")
 
 
 class OrderForm(forms.Form):
@@ -13,7 +14,7 @@ class OrderForm(forms.Form):
     email = forms.EmailField(required=False, validators=[validate_email_domain])
 
     def clean_email(self) -> str:
-        return self.cleaned_datap["email"].lower()
+        return self.cleaned_data["email"].lower()
 
     def clean(self) -> None:
         cleaned_data = super().clean()
@@ -22,6 +23,6 @@ class OrderForm(forms.Form):
             self.add_error(self.email, "Please provide your email address to receive the confirmation message.")
         elif cleaned_data.get("email") and not cleaned_data.get("send_confirmation"):
             self.add_error("send_confirmation", "Please check this if you want to receive a confirmaton mail.")
-        
+
         if cleaned_data.get("magazine_count", 0) + cleaned_data.get("book_count", 0) > 100:
             self.add_error(None, "The total amount of items must be 100 or less.")
