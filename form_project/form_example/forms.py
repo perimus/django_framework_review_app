@@ -39,3 +39,12 @@ class NewsletterSignupForm(forms.Form):
 
         if cleaned_data["signup"] and not cleaned_data.get("email"):
             self.add_error("email", "Your email address is required if signing up for the newsletter.")
+
+class OrderForm(forms.Form):
+    item_a = forms.IntegerField(min_value=0, max_value=100)
+    item_b = forms.IntegerField(min_value=0, max_value=100)
+    
+    def clean(self) -> None:
+        cleaned_data = super().clean()
+        if cleaned_data.get("item_a", 0) + cleaned_data.get("item_b", 0) > 100:
+            self.add_error(None, "The total number of items must be 100 or less.")
