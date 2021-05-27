@@ -26,3 +26,16 @@ class ExampleForm(forms.Form):
     email_input = forms.EmailField()
     date_input = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}))
     hidden_input = forms.CharField(widget=forms.HiddenInput, initial="Hidden Value")
+
+
+class NewsletterSignupForm(forms.Form):
+
+    signup = forms.BooleanField(label="Sign up to newsletter?", required=False)
+
+    email = forms.EmailField(help_text="Enter your email address to subscribe", required=False)
+
+    def clean(self):
+        cleaned_data = super().clean()
+
+        if cleaned_data["signup"] and not cleaned_data.get("email"):
+            self.add_error("email", "Your email address is required if signing up for the newsletter.")
