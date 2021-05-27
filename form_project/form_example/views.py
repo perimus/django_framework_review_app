@@ -7,6 +7,7 @@ from .forms import OrderForm
 
 initial = {"email": "user@example.com"}
 
+
 def form_example(request: request) -> render:
     if request.method == "POST":
         form = OrderForm(request.POST)
