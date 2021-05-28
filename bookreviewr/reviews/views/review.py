@@ -9,9 +9,8 @@ from ..forms import ReviewForm
 from ..models import DBBook, DBReview
 
 
-def review_edit(request: HttpRequest, book_pk: int, review_pk:int = None) -> render:
-    """
-    """
+def review_edit(request: HttpRequest, book_pk: int, review_pk: int = None) -> render:
+    """"""
 
     book: DBBook = get_object_or_404(DBBook, pk=book_pk)
 
@@ -33,26 +32,23 @@ def review_edit(request: HttpRequest, book_pk: int, review_pk:int = None) -> ren
             else:
                 updated_review.date_edited = timezone.now()
                 msg_text = f'Review for "{book}" updated.'
-            
+
             updated_review.save()
             messages.success(request, msg_text)
 
             return redirect("book_detail", book_pk)
-    
+
     else:
         form = ReviewForm(instance=review)
-    
+
     return render(
-        request, 
-        "instance-form.html", 
+        request,
+        "instance-form.html",
         {
             "form": form,
             "instance": review,
             "model_type": "Review",
             "related_instance": book,
             "related_model_type": "Book",
-        }
+        },
     )
-
-
-
