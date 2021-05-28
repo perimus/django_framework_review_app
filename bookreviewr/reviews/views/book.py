@@ -29,10 +29,10 @@ def books_list(request: HttpRequest) -> render:
     return render(request, "reviews/books_list.html", context)
 
 
-def book_detail(request: HttpRequest, book_id: int) -> render:
+def book_detail(request: HttpRequest, pk: int) -> render:
     """"""
 
-    book = get_object_or_404(DBBook, pk=book_id)
+    book = get_object_or_404(DBBook, pk=pk)
     reviews = book.dbreview_set.all()
     book_rating = None
     if reviews:
@@ -40,7 +40,7 @@ def book_detail(request: HttpRequest, book_id: int) -> render:
 
     context = {"book": book, "reviews": reviews, "book_rating": book_rating}
 
-    return render(request, "reviews/book.html", context)
+    return render(request, "reviews/book_detail.html", context)
 
 
 def book_search(request: HttpRequest) -> render:
