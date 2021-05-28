@@ -23,7 +23,9 @@
                     <span class="text-info">Modified on: </span><span> {{ review.date_edited }}</span><br>
                     <span class="text-info">Rating: </span><span class="badge bg-secondary rounded-pill">{{ review.rating }}</span><br>
                     <span class="text-info">Creater: </span><span> {{ review.creator }}</span><br>
+                    <a href="{% url 'review_edit' book.pk review.pk %}">Edit Review</a>
                 </li>
             {% endfor %}
     {% endif %}
+    <a href="{% url 'review_create' book.pk %}" class="btn btn-primary">Add Review</a>
 {% endblock content %}

@@ -1,0 +1,49 @@
+{% extends 'reviews/base.html' %}
+
+{% block title %}
+    {% if form.is_valid and search_text %}
+    Search Results for {{ search_text }}
+    {% else %}
+    Book Search
+    {% endif %}
+{% endblock title %}
+
+
+{% block content %}
+    <h2>Search for Books</h2>
+    <form method="get">
+
+        {{ form.as_p }}
+
+        <p>
+            <button type="submit" class="btn btn-primary" name="button_element" value="Button Element">
+                Search
+            </button>
+        </p>
+        <input type="hidden" name="hidden_input" value="Hidden Value">
+    </form>
+
+    {% if form.is_valid and search_text %}
+        <h3>Search results for <em>{{ search_text }}</em></h3>
+
+        {% if book_list %}
+            <ul class="list-group">
+                {% for book in book_list %}
+                <li class="list-group-item">
+                    <span class="text-info">Title: </span><span> {{ book.title }}</span><br>
+                    <span class="text-info">Contributors: </span>
+                    <span>
+                        {% for contributor in book.contributors.all %}
+                        {{contributor.first_name}} {{contributor.middle_names}} {{contributor.last_name}}
+                        {% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </span><br>
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No results found.</p>
+        {% endif %}
+    {% endif %}
+
+{% endblock content %}
